@@ -31,7 +31,7 @@ end
             setting number of threads equal to Threads.nthreads() = $n"
 end
 
-const P_Limit=1024
+const P_Limit=4024
 
 enable_threads() = set_num_threads(Base.Threads.nthreads())
 disable_threads() = set_num_threads(1)
