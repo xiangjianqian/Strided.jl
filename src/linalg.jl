@@ -99,7 +99,7 @@ function _threaded_blas_mul!(C::StridedView{T,2}, A::StridedView{T,2}, B::Stride
                              nthreads) where {T<:LinearAlgebra.BlasFloat}
     m, n = size(C)
     m == size(A, 1) && n == size(B, 2) || throw(DimensionMismatch())
-    if nthreads == 1 || m * n < 1024
+    if nthreads == 1 || m * n < P_Limit
         A2, CA = getblasmatrix(A)
         B2, CB = getblasmatrix(B)
         LinearAlgebra.BLAS.gemm!(CA, CB, convert(T, α), A2, B2, convert(T, β), C)
